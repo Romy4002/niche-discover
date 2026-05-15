@@ -73,7 +73,6 @@ Secrets are encrypted. GitHub Actions reads them as environment variables at run
 |---|---|
 | `GEMINI_API_KEY` | Your key from Step 1 |
 | `DISCORD_WEBHOOK_URL` | Your webhook URL from Step 1 |
-| `REDDIT_USER_AGENT` | `GameIntelBot/1.0` (copy exactly) |
 
 Add them **one at a time**. The name must match exactly — GitHub secrets are case-sensitive.
 
@@ -168,3 +167,4 @@ To change the time, edit `.github/workflows/daily_run.yml` line 5:
 | Discord Webhooks | No stated limit | 2 req/run |
 
 **Total cost: $0**
+

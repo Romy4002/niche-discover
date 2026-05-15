@@ -26,9 +26,6 @@ jobs:
 
       - name: Run pipeline
         env:
-          REDDIT_CLIENT_ID:     ${{ secrets.REDDIT_CLIENT_ID }}
-          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
-          REDDIT_USER_AGENT:    ${{ secrets.REDDIT_USER_AGENT }}
           GEMINI_API_KEY:       ${{ secrets.GEMINI_API_KEY }}
           DISCORD_WEBHOOK_URL:  ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: python main.py
@@ -49,3 +46,4 @@ jobs:
           name: intel-report-${{ github.run_id }}
           path: storage/reports/
           retention-days: 30
+
