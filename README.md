@@ -3,7 +3,7 @@
 A fully automated, free-to-run pipeline that runs daily via GitHub Actions,
 collects mobile game market data from multiple public sources, detects
 emerging trends and underserved niches using deterministic code, then uses
-Gemini 1.5 Flash to write a human-readable briefing posted to Discord.
+Gemini 2.5 Flash Lite to write a human-readable briefing posted to Discord.
 
 **Code finds patterns. AI explains patterns.**
 
@@ -15,7 +15,7 @@ Gemini 1.5 Flash to write a human-readable briefing posted to Discord.
 Collectors          Processors             Analyzers
 ───────────         ──────────             ─────────
 google_play    -->  freshness         -->  trend_scorer
-reddit         -->  normalizer        -->  niche_detector  --> Trends Pass 2
+reddit/feeds   -->  normalizer        -->  niche_detector  --> Trends Pass 2
 steam          -->  theme_extractor   -->  complaint_parser
 trends (P1)                           -->  history_diff
 
@@ -24,66 +24,57 @@ AI                  Reports               Delivery
 synthesizer    -->  builder           -->  discord_webhook
 ```
 
+Reddit data is collected via the **public JSON API** — no account or API key required.
+If Reddit IPs are blocked (e.g. on GitHub Actions), the collector automatically falls back to
+TouchArcade RSS and Game Developer RSS feeds.
+
 ---
 
 ## Setup (one-time, ~10 minutes)
 
-### 1. Fork / clone this repo
+See `SETUP.md` for the full step-by-step guide. Quick summary:
 
-```bash
-git clone https://github.com/YOUR_USERNAME/niche-discover.git
-cd niche-discover
-```
+### 1. Get a Gemini API key (free tier)
 
-### 2. Create a Reddit app
+1. Go to [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
+2. Click **Create API key** → **Create API key in new project**
+3. Copy the key (starts with `AIza...`)
 
-1. Go to [reddit.com/prefs/apps](https://www.reddit.com/prefs/apps)
-2. Click **Create another app...**
-3. Choose type: **script**
-4. Redirect URI: `http://localhost:8080`
-5. Note the **client ID** (shown under the app name) and **client secret**
-
-### 3. Get a Gemini API key (free tier)
-
-1. Go to [aistudio.google.com](https://aistudio.google.com)
-2. Sign in with a Google account
-3. Click **Get API key** → Create API key
-4. Copy the key
-
-### 4. Create a Discord webhook
+### 2. Create a Discord webhook
 
 1. Open a Discord server you control
 2. **Server Settings** → **Integrations** → **Webhooks** → **New Webhook**
 3. Choose a channel, give it a name, copy the webhook URL
 
-### 5. Add GitHub Secrets
+### 3. Add GitHub Secrets
 
-In your forked repository:
-**Settings** → **Secrets and variables** → **Actions** → **New repository secret**
+In your repository: **Settings** → **Secrets and variables** → **Actions**
 
-| Secret name            | Value                        |
-|------------------------|------------------------------|
-| `REDDIT_CLIENT_ID`     | From step 2                  |
-| `REDDIT_CLIENT_SECRET` | From step 2                  |
-| `REDDIT_USER_AGENT`    | e.g. `GameIntelBot/1.0`      |
-| `GEMINI_API_KEY`       | From step 3                  |
-| `DISCORD_WEBHOOK_URL`  | From step 4                  |
+| Secret name           | Value                   |
+|-----------------------|-------------------------|
+| `GEMINI_API_KEY`      | Your key from step 1    |
+| `DISCORD_WEBHOOK_URL` | Your webhook from step 2|
 
-### 6. Enable GitHub Actions
+That's it. **No Reddit credentials needed.**
 
-Go to the **Actions** tab in your repo and enable workflows if prompted.
+### 4. Enable GitHub Actions
 
-### 7. Trigger a first run manually
+Go to the **Actions** tab and enable workflows if prompted.
+Set workflow permissions to **Read and write** under Settings → Actions → General.
+
+### 5. Trigger a first run manually
 
 **Actions** → **Daily Market Intelligence Run** → **Run workflow**
-
-This verifies everything works before the scheduled daily run begins.
 
 ---
 
 ## Schedule
 
-The pipeline runs at **7:00 AM UTC** every day via cron.
+The pipeline runs at **3:20 AM UTC** every day (delivers by ~9:00 AM IST).
+
+| UTC     | IST (India) | US Eastern | US Pacific |
+|---------|-------------|------------|------------|
+| 3:20 AM | 8:50 AM     | 11:20 PM   | 8:20 PM    |
 
 You can also trigger it manually from the Actions tab at any time.
 
@@ -92,18 +83,17 @@ You can also trigger it manually from the Actions tab at any time.
 ## What it produces
 
 ### Discord message (summary)
-- Market overview (2 sentences from AI)
-- Top 3 underserved niches (with Trends direction)
+- Market overview (2 sentences from AI briefing)
+- Top 3 underserved niches with Trends direction
 - Trending genres
-- Google Trends breakout queries
 - Top complaint / top praise
-- New releases to watch
+- New releases to watch with Play Store links
 
 ### Markdown report (attached file)
 Full tables for:
 - All trending apps with scores
 - All niches with evidence
-- Emerging themes
+- Emerging themes (TF-IDF)
 - Player complaints + praises
 - Steam mechanic tags
 - Newly detected apps
@@ -117,10 +107,12 @@ Full tables for:
 | Source | Method | Cost |
 |--------|--------|------|
 | Google Play | `google-play-scraper` (Python lib) | Free |
-| Reddit | PRAW read-only API | Free |
-| Steam | SteamSpy public API (no key) | Free |
+| Reddit | Public JSON API — no auth required | Free |
+| TouchArcade | RSS feed (fallback when Reddit is blocked) | Free |
+| Game Developer | RSS feed (fallback when Reddit is blocked) | Free |
+| Steam | SteamSpy public API (no key needed) | Free |
 | Google Trends | `pytrends` (unofficial) | Free |
-| AI Briefing | Gemini 1.5 Flash (free tier) | Free |
+| AI Briefing | Gemini 2.5 Flash Lite (free tier) | Free |
 
 ---
 
@@ -141,31 +133,28 @@ rebuilt fresh each run and uploaded as a GitHub Actions artifact.
 
 ---
 
-## Running locally (for development)
+## Running locally
 
-```bash
+```powershell
 pip install -r requirements.txt
 
-# Set required env vars (PowerShell example)
-$env:REDDIT_CLIENT_ID     = "your_id"
-$env:REDDIT_CLIENT_SECRET = "your_secret"
-$env:REDDIT_USER_AGENT    = "GameIntelBot/1.0"
-$env:GEMINI_API_KEY       = "your_key"
-$env:DISCORD_WEBHOOK_URL  = "your_webhook_url"
+# Set required env vars
+$env:GEMINI_API_KEY      = "your_key"
+$env:DISCORD_WEBHOOK_URL = "your_webhook_url"
 
 python main.py
 ```
 
-Each module also has a standalone `if __name__ == "__main__"` test block
-for isolated testing (see the Implementation Order in the spec).
+Reddit data will be collected automatically — no credentials needed.
 
 ---
 
 ## Hard constraints (by design)
 
 - No paid APIs or services
+- No Reddit account or API credentials required
 - No local server required
 - Zero manual steps after setup
-- AI only receives pre-extracted evidence -- it cannot hallucinate data
+- AI only receives pre-extracted evidence — it cannot hallucinate data
 - All file writes are atomic (`.tmp` then rename)
 - One collector failing never stops the pipeline

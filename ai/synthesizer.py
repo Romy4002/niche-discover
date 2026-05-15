@@ -2,7 +2,7 @@
 ai/synthesizer.py
 ==================
 Builds a structured evidence packet from all processed data and sends it
-to Gemini 1.5 Flash to generate a 600-word human-readable briefing.
+to Gemini 2.5 Flash Lite to generate a 600-word human-readable briefing.
 
 The AI ONLY receives pre-extracted evidence. It cannot access any
 external data or APIs.
@@ -299,3 +299,4 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     result = synthesize()
     print(result[:500])
+
