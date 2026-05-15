@@ -2,7 +2,7 @@
 
 on:
   schedule:
-    - cron: "0 7 * * *"   # 7 AM UTC daily
+    - cron: "20 3 * * *"   # 3:20 AM UTC = ~8:50 AM IST (report arrives by 9 AM IST)
   workflow_dispatch:        # allow manual trigger
 
 jobs:
@@ -46,4 +46,5 @@ jobs:
           name: intel-report-${{ github.run_id }}
           path: storage/reports/
           retention-days: 30
+
 
