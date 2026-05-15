@@ -69,7 +69,7 @@ def build_markdown(
     lines.append(f"# Mobile Game Market Intelligence -- {date_str}")
     lines.append("")
 
-    # ── AI Briefing ───────────────────────────────────────────────────────
+    # â”€â”€ AI Briefing â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     briefing_path = proc_dir / "ai_briefing.txt"
     briefing = briefing_path.read_text(encoding="utf-8") if briefing_path.exists() else "[AI briefing not available]"
     lines.append("## Executive Summary")
@@ -77,7 +77,7 @@ def build_markdown(
     lines.append(briefing)
     lines.append("")
 
-    # ── Trending Apps ─────────────────────────────────────────────────────
+    # â”€â”€ Trending Apps â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     lines.append("## Trending Apps")
     lines.append("")
     trend_data = _load_json(proc_dir / "trend_scores.json")
@@ -102,7 +102,7 @@ def build_markdown(
         lines.append("_No trending apps data._")
     lines.append("")
 
-    # ── Underserved Niches ────────────────────────────────────────────────
+    # â”€â”€ Underserved Niches â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     lines.append("## Underserved Niches")
     lines.append("")
     niche_data = _load_json(proc_dir / "niches.json")
@@ -129,7 +129,7 @@ def build_markdown(
         lines.append("_No niche data._")
     lines.append("")
 
-    # ── Google Trends Breakout Queries ────────────────────────────────────
+    # â”€â”€ Google Trends Breakout Queries â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     lines.append("## Google Trends Breakout Queries")
     lines.append("")
     breakout_data = _load_json(raw_dir / "trends_breakout.json")
@@ -141,7 +141,7 @@ def build_markdown(
         lines.append("_No breakout queries._")
     lines.append("")
 
-    # ── Emerging Themes ───────────────────────────────────────────────────
+    # â”€â”€ Emerging Themes â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     lines.append("## Emerging Themes")
     lines.append("")
     diff_data = _load_json(proc_dir / "history_diff.json")
@@ -158,7 +158,7 @@ def build_markdown(
         lines.append("_No emerging themes._")
     lines.append("")
 
-    # ── Player Complaints ─────────────────────────────────────────────────
+    # â”€â”€ Player Complaints â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     lines.append("## Player Complaints")
     lines.append("")
     complaint_data = _load_json(proc_dir / "complaints.json")
@@ -172,7 +172,7 @@ def build_markdown(
         lines.append("_No complaint data._")
     lines.append("")
 
-    # ── Player Praises ────────────────────────────────────────────────────
+    # â”€â”€ Player Praises â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     lines.append("## Player Praises")
     lines.append("")
     top_praises = (complaint_data or {}).get("top_praises", [])
@@ -183,7 +183,7 @@ def build_markdown(
         lines.append("_No praise data._")
     lines.append("")
 
-    # ── Steam Mechanic Signals ────────────────────────────────────────────
+    # â”€â”€ Steam Mechanic Signals â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     lines.append("## Steam Mechanic Signals")
     lines.append("")
     steam_data = _load_json(raw_dir / "steam_raw.json")
@@ -197,7 +197,7 @@ def build_markdown(
         lines.append("_No Steam tag data._")
     lines.append("")
 
-    # ── Newly Detected Apps ───────────────────────────────────────────────
+    # â”€â”€ Newly Detected Apps â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     lines.append("## Newly Detected Apps")
     lines.append("")
     newly = (diff_data or {}).get("newly_detected_apps", [])
@@ -215,7 +215,7 @@ def build_markdown(
         lines.append("_No newly detected apps (first run or no new entries)._")
     lines.append("")
 
-    # ── Trend Velocity ────────────────────────────────────────────────────
+    # â”€â”€ Trend Velocity â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     lines.append("## Trend Velocity (7-day acceleration)")
     lines.append("")
     accelerating = (diff_data or {}).get("accelerating_apps", [])
@@ -233,7 +233,7 @@ def build_markdown(
         lines.append("_No accelerating apps this week._")
     lines.append("")
 
-    # ── Run Metadata ──────────────────────────────────────────────────────
+    # â”€â”€ Run Metadata â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     lines.append("## Data Sources & Run Metadata")
     lines.append("")
     lines.append(f"- **Google Play**: {meta.get('play_collected', 0)} apps collected, "
@@ -264,13 +264,21 @@ def build_discord_message(
     parts.append(f"**Mobile Game Intel -- {date_str}**")
     parts.append("")
 
-    # Market overview: first 2 sentences of briefing
+    # Market overview: extract clean prose sentences from briefing (skip markdown headers)
     briefing_path = proc_dir / "ai_briefing.txt"
     if briefing_path.exists():
         full = briefing_path.read_text(encoding="utf-8")
-        # Skip fallback notes, get first real content sentences
-        lines_nonblank = [l for l in full.splitlines() if l.strip() and not l.startswith("[")]
-        overview = " ".join(lines_nonblank[:3])[:300]
+        prose_lines = [
+            l.strip().lstrip("*#> ").strip()
+            for l in full.splitlines()
+            if l.strip()
+            and not l.startswith("[")          # skip fallback notes
+            and not l.startswith("#")          # skip markdown headers
+            and not l.startswith("**1.")       # skip section headers like **1. Market Overview**
+            and not l.startswith("**2.")
+            and len(l.strip()) > 40            # skip very short lines
+        ]
+        overview = " ".join(prose_lines[:2])[:300]
         parts.append(overview)
         parts.append("")
 
@@ -330,9 +338,15 @@ def build_discord_message(
     if newly:
         parts.append("**New Releases to Watch**")
         for app in newly:
+            app_id = app.get("appId") or app.get("id") or ""
+            play_url = (
+                f"https://play.google.com/store/apps/details?id={app_id}"
+                if app_id else ""
+            )
+            link = f" (<{play_url}>)" if play_url else ""
             parts.append(
-                f"- {_safe(app.get('title'))} -- "
-                f"{_safe(app.get('genre'))} ({_safe(app.get('freshness_label'))})"
+                f"- **{_safe(app.get('title'))}**{link}\n"
+                f"  {_safe(app.get('genre'))} · {_safe(app.get('freshness_label'))}"
             )
         parts.append("")
 
@@ -390,3 +404,5 @@ if __name__ == "__main__":
     path, msg = build()
     print("Report:", path)
     print("Discord preview:\n", msg[:400])
+
+
