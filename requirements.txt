@@ -1,0 +1,7 @@
+﻿google-play-scraper
+pytrends
+google-genai
+scikit-learn
+requests
+pandas
+python-dateutil

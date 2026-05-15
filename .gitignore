@@ -1,0 +1,23 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+.env
+
+# Storage -- raw and processed data is ephemeral, rebuilt each run
+storage/raw/
+storage/processed/
+storage/reports/
+
+# storage/master/ IS tracked -- rolling 30-day history for history_diff.py
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
