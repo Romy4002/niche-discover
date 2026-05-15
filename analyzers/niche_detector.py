@@ -1,4 +1,4 @@
-﻿"""
+"""
 analyzers/niche_detector.py
 ============================
 Detects underserved niches: topics with strong Reddit discussion
@@ -32,6 +32,29 @@ logger = logging.getLogger(__name__)
 
 # Direction sort order (lower index = higher priority)
 _DIRECTION_ORDER = {"rising": 0, "new_signal": 1, "stable": 2, "declining": 3, "no_data": 4, "error": 5}
+
+# Terms that are Reddit/internet meta-language, not game niches
+_NICHE_STOPWORDS: frozenset[str] = frozenset([
+    # Reddit meta
+    "would", "could", "should", "anyone", "someone", "people", "want", "need",
+    "think", "know", "feel", "really", "still", "just", "also", "even",
+    "much", "many", "some", "time", "way", "thing", "things", "lot",
+    "look", "like", "got", "get", "make", "made", "back", "actually",
+    # Publishing meta-terms
+    "reviews", "review", "sales", "releases", "release", "roundup",
+    "round", "featuring", "feature", "weekly", "daily", "monthly",
+    "thread", "discussion", "question", "questions", "recommend",
+    "recommendations", "looking", "request", "requests",
+    # Platform names (not mobile game niches)
+    "switch", "switcharcade", "nintendo", "playstation", "xbox",
+    "steam", "pc", "console", "windows", "apple",
+    # Generic qualifiers
+    "indie", "port", "ports", "remake", "remaster", "sequel",
+    "update", "patch", "beta", "alpha", "early", "access",
+    # Filler words TF-IDF stopwords miss in this context
+    "year", "day", "week", "month", "ago", "old", "has", "was",
+    "did", "does", "its", "the", "for", "and", "with", "from",
+])
 
 
 # ---------------------------------------------------------------------------
@@ -86,7 +109,9 @@ def _extract_topics_from_reddit(posts: list[dict]) -> dict[str, dict]:
 
         # Unigrams (skip common words already handled by stopwords in TF-IDF)
         for word in words:
-            if word in config.TFIDF_CUSTOM_STOPWORDS:
+            if word in config.TFIDF_CUSTOM_STOPWORDS or word in _NICHE_STOPWORDS:
+                continue
+            if len(word) < 4:  # skip very short words ("tha", "rip", etc.)
                 continue
             if word not in topic_data:
                 topic_data[word] = {
@@ -103,7 +128,8 @@ def _extract_topics_from_reddit(posts: list[dict]) -> dict[str, dict]:
         # Bigrams
         for i in range(len(words) - 1):
             bigram = f"{words[i]} {words[i+1]}"
-            if words[i] in config.TFIDF_CUSTOM_STOPWORDS or words[i+1] in config.TFIDF_CUSTOM_STOPWORDS:
+            if (words[i] in config.TFIDF_CUSTOM_STOPWORDS or words[i+1] in config.TFIDF_CUSTOM_STOPWORDS
+                    or words[i] in _NICHE_STOPWORDS or words[i+1] in _NICHE_STOPWORDS):
                 continue
             if bigram not in topic_data:
                 topic_data[bigram] = {

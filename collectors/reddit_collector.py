@@ -1,4 +1,4 @@
-﻿"""
+"""
 collectors/reddit_collector.py
 ================================
 Collects posts from mobile-gaming subreddits using Reddit's public API.
@@ -14,11 +14,14 @@ Output: storage/raw/YYYY-MM-DD/reddit_raw.json
 
 from __future__ import annotations
 
+import html
 import json
 import logging
+import re
 import time
 import xml.etree.ElementTree as ET
 from datetime import date, datetime, timezone
+from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
 
@@ -54,6 +57,35 @@ SUPPLEMENTARY_FEEDS = [
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
+
+class _HTMLTextExtractor(HTMLParser):
+    """Lightweight HTML → plain-text stripper (no deps)."""
+    def __init__(self):
+        super().__init__()
+        self._parts: list[str] = []
+    def handle_data(self, data: str) -> None:
+        self._parts.append(data)
+    def get_text(self) -> str:
+        return " ".join(self._parts)
+
+
+def _strip_html(raw: str) -> str:
+    """Strip HTML tags and decode HTML entities from a string."""
+    if not raw:
+        return ""
+    # Quick bail-out: if it doesn't look like HTML, skip the parser
+    if "<" not in raw:
+        return html.unescape(raw)
+    extractor = _HTMLTextExtractor()
+    try:
+        extractor.feed(raw)
+        text = extractor.get_text()
+    except Exception:
+        # Fallback: crude tag removal via regex
+        text = re.sub(r"<[^>]+>", " ", raw)
+    # Collapse whitespace and decode entities
+    text = html.unescape(text)
+    return re.sub(r"\s+", " ", text).strip()
 
 def _atomic_write(path: Path, data: Any) -> None:
     tmp = path.with_suffix(".tmp")
@@ -159,7 +191,7 @@ def _fetch_rss(subreddit: str, sort: str, limit: int) -> list[dict]:
             posts.append({
                 "id": post_id,
                 "title": (title_el.text or "") if title_el is not None else "",
-                "selftext": (content_el.text or "")[:config.REDDIT_SELFTEXT_MAX_CHARS] if content_el is not None else "",
+                "selftext": _strip_html((content_el.text or "") if content_el is not None else "")[:config.REDDIT_SELFTEXT_MAX_CHARS],
                 "score": 0, "num_comments": 0, "created_utc": "", "flair": None, "comments": [],
                 "url": link_el.get("href", "") if link_el is not None else "",
                 "subreddit": subreddit,
@@ -200,7 +232,7 @@ def _fetch_supplementary_feeds() -> list[dict]:
                 desc_el = _d if _d is not None else item.find(f"{{{_ATOM_NS}}}content")
                 _l = item.find("link");    link_el = _l if _l is not None else item.find(f"{{{_ATOM_NS}}}link")
                 title = (title_el.text or "").strip() if title_el is not None else ""
-                desc  = (desc_el.text or "").strip()[:config.REDDIT_SELFTEXT_MAX_CHARS] if desc_el is not None else ""
+                desc  = _strip_html((desc_el.text or "") if desc_el is not None else "")[:config.REDDIT_SELFTEXT_MAX_CHARS]
                 link  = ((link_el.text or "") if link_el is not None else "") or (link_el.get("href","") if link_el is not None else "")
                 if title:
                     posts.append({

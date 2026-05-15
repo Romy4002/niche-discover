@@ -1,4 +1,4 @@
-﻿"""
+"""
 collectors/trends_collector.py
 ================================
 Collects Google Trends data using the pytrends library (no API key).
@@ -246,11 +246,11 @@ def get_trend_validation(
                             "earlier_avg": 0.0,
                         }
             except Exception as exc:
-                logger.warning("[trends] Batch %s failed: %s — skipping", batch, exc)
+                logger.warning("[trends] Batch %s failed: %s — marking no_data", batch, exc)
                 for term in batch:
                     results[term] = {
                         "term": term,
-                        "direction": "error",
+                        "direction": "no_data",  # not "error" — we just lack data
                         "peak": 0.0,
                         "recent_avg": 0.0,
                         "earlier_avg": 0.0,

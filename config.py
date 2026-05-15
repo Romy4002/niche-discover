@@ -55,9 +55,9 @@ REDDIT_SELFTEXT_MAX_CHARS: int = 500
 # --- Google Trends -----------------------------------------------------------
 
 TRENDS_BATCH_SIZE: int = 5
-TRENDS_SLEEP_BETWEEN: int = 2
+TRENDS_SLEEP_BETWEEN: int = 5          # seconds between batches (reduce 400s)
 TRENDS_RETRY_SLEEP: int = 60
-TRENDS_TIMEFRAME_VALIDATE: str = "now 3-m"
+TRENDS_TIMEFRAME_VALIDATE: str = "today 3-m"   # "now X-m" is not valid in pytrends
 TRENDS_TIMEFRAME_BREAKOUT: str = "now 7-d"
 TRENDS_BREAKOUT_SEED: str = "mobile games"
 TRENDS_BREAKOUT_TOP_N: int = 15
