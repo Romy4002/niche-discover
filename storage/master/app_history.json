@@ -1,30 +1,30 @@
 {
   "com.slg.policewar": {
-    "date": "2026-05-15",
-    "score": 27.0,
+    "date": "2026-05-16",
+    "score": 15.0,
     "title": "Police Chief",
     "genre": "Strategy"
   },
   "com.ludenio.a7": {
-    "date": "2026-05-15",
-    "score": 25.0,
+    "date": "2026-05-16",
+    "score": 13.0,
     "title": "Warnament Grand Strategy",
     "genre": "Strategy"
   },
   "com.ubisoft.the.division.mobile.combat.shooting.open.world.rpg": {
-    "date": "2026-05-15",
+    "date": "2026-05-16",
     "score": 24.0,
     "title": "The Division Resurgence",
     "genre": "Action"
   },
   "com.tcade.tvcade2": {
-    "date": "2026-05-15",
+    "date": "2026-05-16",
     "score": 22.0,
     "title": "TVcade | Android TV Arcade",
     "genre": "Arcade"
   },
   "com.hidden.association": {
-    "date": "2026-05-15",
+    "date": "2026-05-16",
     "score": 22.0,
     "title": "Hidden Association \u2013 3D Puzzle",
     "genre": "Puzzle"
@@ -42,27 +42,33 @@
     "genre": "Puzzle"
   },
   "com.runawayplay.dragons": {
-    "date": "2026-05-15",
-    "score": 18.0,
+    "date": "2026-05-16",
+    "score": 9.0,
     "title": "Hatch Dragons",
     "genre": "Simulation"
   },
   "com.xd.xdtglobal.gp": {
-    "date": "2026-05-15",
+    "date": "2026-05-16",
     "score": 6.0,
     "title": "Heartopia",
     "genre": "Simulation"
   },
   "com.hottagames.nte": {
-    "date": "2026-05-15",
+    "date": "2026-05-16",
     "score": 12.0,
     "title": "NTE: Neverness to Everness",
     "genre": "Role Playing"
   },
   "com.playdigious.seaofstars": {
-    "date": "2026-05-15",
+    "date": "2026-05-16",
     "score": 9.0,
     "title": "Sea of Stars",
     "genre": "Role Playing"
+  },
+  "com.sofish.screwhome.gp": {
+    "date": "2026-05-16",
+    "score": 18.0,
+    "title": "Unscrew Family:Bolt Puzzle",
+    "genre": "Casual"
   }
 }

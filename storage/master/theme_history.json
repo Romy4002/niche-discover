@@ -11,6 +11,10 @@
     {
       "date": "2026-05-15",
       "score": 0.014377
+    },
+    {
+      "date": "2026-05-16",
+      "score": 0.012111
     }
   ],
   "sci fi": [
@@ -91,6 +95,10 @@
     {
       "date": "2026-05-15",
       "score": 0.010384
+    },
+    {
+      "date": "2026-05-16",
+      "score": 0.010495
     }
   ],
   "save 90": [
@@ -131,6 +139,10 @@
     {
       "date": "2026-05-15",
       "score": 0.009406
+    },
+    {
+      "date": "2026-05-16",
+      "score": 0.007636
     }
   ],
   "https store": [
@@ -141,6 +153,10 @@
     {
       "date": "2026-05-15",
       "score": 0.007997
+    },
+    {
+      "date": "2026-05-16",
+      "score": 0.007638
     }
   ],
   "steampowered com": [
@@ -177,6 +193,10 @@
     {
       "date": "2026-05-15",
       "score": 0.008668
+    },
+    {
+      "date": "2026-05-16",
+      "score": 0.007877
     }
   ],
   "indie dev": [
@@ -213,6 +233,10 @@
     {
       "date": "2026-05-15",
       "score": 0.007807
+    },
+    {
+      "date": "2026-05-16",
+      "score": 0.008303
     }
   ],
   "just released": [
@@ -229,6 +253,10 @@
     {
       "date": "2026-05-15",
       "score": 0.007931
+    },
+    {
+      "date": "2026-05-16",
+      "score": 0.007474
     }
   ],
   "save 85": [
@@ -319,6 +347,142 @@
     {
       "date": "2026-05-15",
       "score": 0.006851
+    },
+    {
+      "date": "2026-05-16",
+      "score": 0.009265
+    }
+  ],
+  "link comments": [
+    {
+      "date": "2026-05-16",
+      "score": 0.142755
+    }
+  ],
+  "continue reading": [
+    {
+      "date": "2026-05-16",
+      "score": 0.038768
+    }
+  ],
+  "oddpilgrim link": [
+    {
+      "date": "2026-05-16",
+      "score": 0.012977
+    }
+  ],
+  "submitted oddpilgrim": [
+    {
+      "date": "2026-05-16",
+      "score": 0.012977
+    }
+  ],
+  "steam submitted": [
+    {
+      "date": "2026-05-16",
+      "score": 0.011384
+    }
+  ],
+  "switcharcade round": [
+    {
+      "date": "2026-05-16",
+      "score": 0.010052
+    }
+  ],
+  "early access": [
+    {
+      "date": "2026-05-16",
+      "score": 0.009962
+    }
+  ],
+  "indie developers": [
+    {
+      "date": "2026-05-16",
+      "score": 0.009772
+    }
+  ],
+  "nintendo switch": [
+    {
+      "date": "2026-05-16",
+      "score": 0.009381
+    }
+  ],
+  "need help": [
+    {
+      "date": "2026-05-16",
+      "score": 0.008748
+    }
+  ],
+  "steam deck": [
+    {
+      "date": "2026-05-16",
+      "score": 0.007986
+    }
+  ],
+  "stardew valley": [
+    {
+      "date": "2026-05-16",
+      "score": 0.007494
+    }
+  ],
+  "honest feedback": [
+    {
+      "date": "2026-05-16",
+      "score": 0.006573
+    }
+  ],
+  "battle cats": [
+    {
+      "date": "2026-05-16",
+      "score": 0.006515
+    }
+  ],
+  "experience making": [
+    {
+      "date": "2026-05-16",
+      "score": 0.006515
+    }
+  ],
+  "non p2w": [
+    {
+      "date": "2026-05-16",
+      "score": 0.006515
+    }
+  ],
+  "past months": [
+    {
+      "date": "2026-05-16",
+      "score": 0.006515
+    }
+  ],
+  "studio build": [
+    {
+      "date": "2026-05-16",
+      "score": 0.006515
+    }
+  ],
+  "studios developers": [
+    {
+      "date": "2026-05-16",
+      "score": 0.006515
+    }
+  ],
+  "weeks ago": [
+    {
+      "date": "2026-05-16",
+      "score": 0.006515
+    }
+  ],
+  "controller review": [
+    {
+      "date": "2026-05-16",
+      "score": 0.006262
+    }
+  ],
+  "reviews featuring": [
+    {
+      "date": "2026-05-16",
+      "score": 0.006087
     }
   ]
 }
