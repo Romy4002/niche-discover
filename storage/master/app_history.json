@@ -1,19 +1,19 @@
 {
   "com.slg.policewar": {
-    "date": "2026-05-20",
-    "score": 15.0,
+    "date": "2026-05-21",
+    "score": 21.0,
     "title": "Police Chief",
     "genre": "Strategy"
   },
   "com.ludenio.a7": {
-    "date": "2026-05-20",
-    "score": 13.0,
+    "date": "2026-05-21",
+    "score": 19.0,
     "title": "Warnament Grand Strategy",
     "genre": "Strategy"
   },
   "com.ubisoft.the.division.mobile.combat.shooting.open.world.rpg": {
-    "date": "2026-05-20",
-    "score": 15.0,
+    "date": "2026-05-21",
+    "score": 12.0,
     "title": "The Division Resurgence",
     "genre": "Action"
   },
@@ -30,8 +30,8 @@
     "genre": "Puzzle"
   },
   "com.hypgames.sniperbattle": {
-    "date": "2026-05-15",
-    "score": 21.0,
+    "date": "2026-05-21",
+    "score": 9.0,
     "title": "Sniper Battle: 3D War Shooter",
     "genre": "Action"
   },
@@ -42,14 +42,14 @@
     "genre": "Puzzle"
   },
   "com.runawayplay.dragons": {
-    "date": "2026-05-20",
-    "score": 12.0,
+    "date": "2026-05-21",
+    "score": 9.0,
     "title": "Hatch Dragons",
     "genre": "Simulation"
   },
   "com.xd.xdtglobal.gp": {
-    "date": "2026-05-17",
-    "score": 9.0,
+    "date": "2026-05-21",
+    "score": 6.0,
     "title": "Heartopia",
     "genre": "Simulation"
   },
@@ -82,5 +82,17 @@
     "score": 25.0,
     "title": "Where's My Seat?\u30fbLogic Puzzles",
     "genre": "Puzzle"
+  },
+  "com.onemb.shadowborn": {
+    "date": "2026-05-21",
+    "score": 12.0,
+    "title": "Shadowborn",
+    "genre": "Role Playing"
+  },
+  "color.number.paint.pixle.art.sort.jigsaw": {
+    "date": "2026-05-21",
+    "score": 12.0,
+    "title": "Jewel Coloring",
+    "genre": "Casual"
   }
 }
